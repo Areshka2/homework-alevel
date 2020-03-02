@@ -1,0 +1,48 @@
+/* blockquote */
+.blockquote {
+  color: #0f0;
+}
+
+/* holder */
+.holder a[href^="https"] {
+  color: #f00
+}
+
+.holder .list>li:last-child {
+  background-color: #00f;
+}
+
+.holder ul+p {
+  font-size: 26px;
+}
+
+/* level-3 */
+.level-3 h3:first-of-type {
+  color: pink;
+}
+
+#greycol {
+  color: gray;
+}
+
+.level-3 div>p {
+  color: red;
+}
+
+.level-3 p:nth-last-of-type(2) {
+  color: green;
+}
+
+.level-3 .yellow {
+  color: yellow;
+}
+
+/* bg-box */
+.bg-box {
+  height: 700px;
+  background: url("../img/lamp.png") repeat-x 0 0 / 4%,
+    url("../img/grass.png") repeat-x 0 100% / 15%,
+    url("../img/hedgehog.png") repeat-y 0 0 / 4%,
+    url("../img/donut.png") repeat-y 100% 0 / 4%,
+    #2A700A url("../img/pole-zelen-trava-dom-derevya.jpg") no-repeat 50% / auto;
+}
