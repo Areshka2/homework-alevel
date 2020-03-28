@@ -104,29 +104,33 @@ alert(`ФИО - ${surname} ${name} ${fathername}`);
 Используя **ИЛИ** `||` добавьте имена по умолчанию, которые будут сохраняться во внутренних переменных если пользователь ввел пустую строку или нажал "Отмена". Например, если вы на шаге ввода Фамилии нажмете `Escape`, фамилия будет "Иванов"
 
 ```javascript
-let surname = prompt("Фамилия", "") || "Иванов";
-let name = prompt("Имя", "") || "Иван";
-let fathername = prompt("Отчество", "") || "Иванович";
-alert(`ФИО - ${surname} ${name} ${fathername}`);
+{
+  let surname = prompt("Фамилия", "") || "Иванов";
+  let name = prompt("Имя", "") || "Иван";
+  let fathername = prompt("Отчество", "") || "Иванович";
+  alert(`ФИО - ${surname} ${name} ${fathername}`);
+}
 ```
 
 ## default: if
 Сделайте тоже самое с помощью `if` и `else`
 
 ```javascript
-let surname = prompt("Фамилия", "");
-if (!surname) {
-  surname = "Иванов";
+{
+  let surname = prompt("Фамилия", "");
+  if (!surname) {
+    surname = "Иванов";
+  }
+  let name = prompt("Имя", "");
+  if (!name) {
+    name = "Иван";
+  }
+  let fathername = prompt("Отчество", "");
+  if (!fathername) {
+    fathername = "Иванович";
+  }
+  alert(`ФИО - ${surname} ${name} ${fathername}`);
 }
-let name = prompt("Имя", "");
-if (!name) {
-  name = "Иван";
-}
-let fathername = prompt("Отчество", "");
-if (!fathername) {
-  fathername = "Иванович";
-}
-alert(`ФИО - ${surname} ${name} ${fathername}`);
 ```
 
 ## login and password
@@ -153,9 +157,9 @@ if (login === user.login) {
 
 ## currency calc + currency calc: improved + currency calc: two rates
 Калькулятор обмена валют. Первый `prompt` спрашивает валюту: "usd" или "eur". С помощью `switch` установите обменный курс для валюты, выбранной пользователем, после чего спросите величину и переведите её из гривны в выбранную на первом `prompt` валюту. Выведите результат в `alert()`.
----
+***
 Улучшить предыдущее задание: сделать возможность ввода валюты любыми буквами (`usd`, `uSd`, `USD`), используйте `str.toLowerCase()`.
----
+***
 Добавить к возможность выбора обменного курса на продажу и покупку. Используйте `confirm` для ввода пользователя и тернарный оператор для величины курса.
 
 ```javascript
@@ -190,26 +194,28 @@ if (currency2Uah) {
 Сделать тоже самое на `if`
 
 ```javascript
-let currency = prompt("Введите валюту: usd, eur", "").toLowerCase();
-let currency2Uah;
-if (currency === "usd") {
-  currency2Uah = confirm("Покупка - ОК, Продажа - Отмена") ? 27.973 : 28.669;
-  currencyIcon = "$"
-} else if (currency === "eur") {
-  currency2Uah = confirm("Покупка - ОК, Продажа - Отмена") ? 30.331 : 31.512;
-  currencyIcon = "€";
-} else {
-  alert('Неизвестная валюта');
-}
-
-if (currency2Uah) {
-  let uahValue = +prompt("Введите сумму в грн.", "");
-  let currencyValue;
-  if (uahValue) {
-    currencyValue = +(uahValue / currency2Uah).toFixed(3);
-    alert(`${uahValue} ₴ = ${currencyValue} ${currencyIcon}`);
+{
+  let currency = prompt("Введите валюту: usd, eur", "").toLowerCase();
+  let currency2Uah;
+  if (currency === "usd") {
+    currency2Uah = confirm("Покупка - ОК, Продажа - Отмена") ? 27.973 : 28.669;
+    currencyIcon = "$"
+  } else if (currency === "eur") {
+    currency2Uah = confirm("Покупка - ОК, Продажа - Отмена") ? 30.331 : 31.512;
+    currencyIcon = "€";
   } else {
-    alert("Вы ничего не ввели");
+    alert('Неизвестная валюта');
+  }
+
+  if (currency2Uah) {
+    let uahValue = +prompt("Введите сумму в грн.", "");
+    let currencyValue;
+    if (uahValue) {
+      currencyValue = +(uahValue / currency2Uah).toFixed(3);
+      alert(`${uahValue} ₴ = ${currencyValue} ${currencyIcon}`);
+    } else {
+      alert("Вы ничего не ввели");
+    }
   }
 }
 ```
@@ -245,36 +251,38 @@ if (userOption) {
 Сделать задания обмена валют используя ассоциативный массив (объект) подобной структуры. Добавьте дополнительные поля при надобности. Для обращения к нужному полю используйте `[]`.
 
 ```javascript
-const ratios = {
-  usd: {
-    buy: 27.973,
-    sale: 28.669
-  },
-  euro: {
-    buy: 30.331,
-    sale: 31.512
+{
+  const ratios = {
+    usd: {
+      buy: 27.973,
+      sale: 28.669
+    },
+    euro: {
+      buy: 30.331,
+      sale: 31.512
+    }
   }
-}
-let currency = prompt("Введите валюту: usd, eur", "").toLowerCase();
-let currency2Uah;
-if (currency === "usd") {
-  currency2Uah = confirm("Покупка - ОК, Продажа - Отмена") ? ratios["usd"]["buy"] : ratios["usd"]["sale"];
-  currencyIcon = "$"
-} else if (currency === "eur") {
-  currency2Uah = confirm("Покупка - ОК, Продажа - Отмена") ? ratios["eur"]["buy"] : ratios["eur"]["sale"];
-  currencyIcon = "€";
-} else {
-  alert('Неизвестная валюта');
-}
-
-if (currency2Uah) {
-  let uahValue = +prompt("Введите сумму в грн.", "");
-  let currencyValue;
-  if (uahValue) {
-    currencyValue = +(uahValue / currency2Uah).toFixed(3);
-    alert(`${uahValue} ₴ = ${currencyValue} ${currencyIcon}`);
+  let currency = prompt("Введите валюту: usd, eur", "").toLowerCase();
+  let currency2Uah;
+  if (currency === "usd") {
+    currency2Uah = confirm("Покупка - ОК, Продажа - Отмена") ? ratios["usd"]["buy"] : ratios["usd"]["sale"];
+    currencyIcon = "$"
+  } else if (currency === "eur") {
+    currency2Uah = confirm("Покупка - ОК, Продажа - Отмена") ? ratios["eur"]["buy"] : ratios["eur"]["sale"];
+    currencyIcon = "€";
   } else {
-    alert("Вы ничего не ввели");
+    alert('Неизвестная валюта');
+  }
+
+  if (currency2Uah) {
+    let uahValue = +prompt("Введите сумму в грн.", "");
+    let currencyValue;
+    if (uahValue) {
+      currencyValue = +(uahValue / currency2Uah).toFixed(3);
+      alert(`${uahValue} ₴ = ${currencyValue} ${currencyIcon}`);
+    } else {
+      alert("Вы ничего не ввели");
+    }
   }
 }
 ```
@@ -558,11 +566,13 @@ default:
 Сделайте игру "камень-ножницы-бумага", как описано выше, пользуясь логическими операциями (`&&`, `||`, `!`), не используя `if` и `switch`. Задание должно быть решено одним выражением
 
 ```javascript
-const objPlay = {
-  1: "камень",
-  2: "ножницы",
-  3: "бумага"
-};
-let userChoice, randChoice;
-(userChoice = prompt("Сделайте Ваш выбор (камень, ножницы, или бумага)", "")) && !alert(randChoice = objPlay[Math.floor(1 + Math.random() * 3)]) && (((userChoice === "камень" && randChoice === "ножницы") || (userChoice === "ножницы" && randChoice === "бумага") || (userChoice === "бумага" && randChoice === "камень")) && !alert("Вы победили") || (userChoice === randChoice) && !alert("Ничья") || !alert("Вы проиграли")) || alert("Вы ничего не ввели!");
+{
+  const objPlay = {
+    1: "камень",
+    2: "ножницы",
+    3: "бумага"
+  };
+  let userChoice, randChoice;
+  (userChoice = prompt("Сделайте Ваш выбор (камень, ножницы, или бумага)", "")) && !alert(randChoice = objPlay[Math.floor(1 + Math.random() * 3)]) && (((userChoice === "камень" && randChoice === "ножницы") || (userChoice === "ножницы" && randChoice === "бумага") || (userChoice === "бумага" && randChoice === "камень")) && !alert("Вы победили") || (userChoice === randChoice) && !alert("Ничья") || !alert("Вы проиграли")) || alert("Вы ничего не ввели!");
+}
 ```
