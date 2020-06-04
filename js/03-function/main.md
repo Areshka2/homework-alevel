@@ -1,3 +1,76 @@
+## Дополнительное задание
+Слепить все задания в один текст, таким образом что бы вначале происходил ввод названия задания, каждое задание при этом находится в отдельном case оператора `switch`. Например `case "currency calc"` для калькулятора обмена валют.
+
+```javascript
+let jobTitle = prompt("Введите название задания", "");
+
+switch (jobTitle) {
+  case "switch: sizes":
+    let size = +prompt("Введите размер одежды в укр. системе", "");
+    convertSizes(size);
+    break;
+
+  case "switch: if":
+    var color = prompt("Введите цвет", "");
+    setBgColor(color);
+    break;
+
+  case "prompt: or":
+    alert(userAge());
+    break;
+
+  case "confirm: or this days":
+    alert(shopping());
+    break;
+
+  case "confirm: if this days":
+    shoppingUsingIf();
+    break;
+
+  case "triple prompt":
+    deriveFullName();
+    break;
+
+  case "default: or":
+    deriveFullNameUsingOr();
+    break;
+
+  case "default: if":
+    deriveFullNameUsingIf();
+    break;
+
+  case "login and password":
+    userVerification();
+    break;
+
+  case "currency calc":
+  case "currency calc: improved":
+  case "currency calc: two rates":
+    currencyCalc();
+    break;
+
+  case "currency calc: if":
+    currencyCalcUsingIf();
+    break;
+
+  case "scissors":
+    scissors();
+    break;
+
+  case "Задание на синий пояс":
+    currencyCalcUsingObj();
+    break;
+
+  case "Задание на черный пояс":
+    scissorsLogicalOperations();
+    break;
+
+  default:
+    alert("Неверное название задания");
+    break;
+}
+```
+
 ## switch: sizes
 Сделайте задание **Comparison: sizes** из предыдущего ДЗ используя `switch`
 
@@ -300,79 +373,6 @@ function currencyCalcUsingObj() {
       alert("Вы ничего не ввели");
     }
   }
-}
-```
-
-## Дополнительное задание
-Слепить все задания в один текст, таким образом что бы вначале происходил ввод названия задания, каждое задание при этом находится в отдельном case оператора `switch`. Например `case "currency calc"` для калькулятора обмена валют.
-
-```javascript
-let jobTitle = prompt("Введите название задания", "");
-
-switch (jobTitle) {
-  case "switch: sizes":
-    let size = +prompt("Введите размер одежды в укр. системе", "");
-    convertSizes(size);
-    break;
-
-  case "switch: if":
-    var color = prompt("Введите цвет", "");
-    setBgColor(color);
-    break;
-
-  case "prompt: or":
-    alert(userAge());
-    break;
-
-  case "confirm: or this days":
-    alert(shopping());
-    break;
-
-  case "confirm: if this days":
-    shoppingUsingIf();
-    break;
-
-  case "triple prompt":
-    deriveFullName();
-    break;
-
-  case "default: or":
-    deriveFullNameUsingOr();
-    break;
-
-  case "default: if":
-    deriveFullNameUsingIf();
-    break;
-
-  case "login and password":
-    userVerification();
-    break;
-
-  case "currency calc":
-  case "currency calc: improved":
-  case "currency calc: two rates":
-    currencyCalc();
-    break;
-
-  case "currency calc: if":
-    currencyCalcUsingIf();
-    break;
-
-  case "scissors":
-    scissors();
-    break;
-
-  case "Задание на синий пояс":
-    currencyCalcUsingObj();
-    break;
-
-  case "Задание на черный пояс":
-    scissorsLogicalOperations();
-    break;
-
-  default:
-    alert("Неверное название задания");
-    break;
 }
 ```
 
