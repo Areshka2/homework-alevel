@@ -79,7 +79,6 @@ function convertSizes(sizeUA) {
         break;
       case 44:
         sizeUSA = 10;
-        i
         break;
       case 46:
         sizeUSA = 12;
