@@ -1,3 +1,71 @@
+let jobTitle = prompt("Введите название задания", "");
+
+switch (jobTitle) {
+  case "switch: sizes":
+    let size = +prompt("Введите размер одежды в укр. системе", "");
+    convertSizes(size);
+    break;
+
+  case "switch: if":
+    var color = prompt("Введите цвет", "");
+    setBgColor(color);
+    break;
+
+  case "prompt: or":
+    alert(userAge());
+    break;
+
+  case "confirm: or this days":
+    alert(shopping());
+    break;
+
+  case "confirm: if this days":
+    shoppingUsingIf();
+    break;
+
+  case "triple prompt":
+    deriveFullName();
+    break;
+
+  case "default: or":
+    deriveFullNameUsingOr();
+    break;
+
+  case "default: if":
+    deriveFullNameUsingIf();
+    break;
+
+  case "login and password":
+    userVerification();
+    break;
+
+  case "currency calc":
+  case "currency calc: improved":
+  case "currency calc: two rates":
+    currencyCalc();
+    break;
+
+  case "currency calc: if":
+    currencyCalcUsingIf();
+    break;
+
+  case "scissors":
+    scissors();
+    break;
+
+  case "Задание на синий пояс":
+    currencyCalcUsingObj();
+    break;
+
+  case "Задание на черный пояс":
+    scissorsLogicalOperations();
+    break;
+
+  default:
+    alert("Неверное название задания");
+    break;
+}
+
 // switch: sizes
 function convertSizes(sizeUA) {
   let sizeUSA;
@@ -278,71 +346,3 @@ function scissorsLogicalOperations() {
   (userChoice = prompt("Сделайте Ваш выбор (камень, ножницы, или бумага)", "")) && !alert(randChoice = objPlay[Math.floor(1 + Math.random() * 3)]) && (((userChoice === "камень" && randChoice === "ножницы") || (userChoice === "ножницы" && randChoice === "бумага") || (userChoice === "бумага" && randChoice === "камень")) && !alert("Вы победили") || (userChoice === randChoice) && !alert("Ничья") || !alert("Вы проиграли")) || alert("Вы ничего не ввели!");
 }
 //============================================================================================
-
-let jobTitle = prompt("Введите название задания", "");
-
-switch (jobTitle) {
-  case "switch: sizes":
-    let size = +prompt("Введите размер одежды в укр. системе", "");
-    convertSizes(size);
-    break;
-
-  case "switch: if":
-    var color = prompt("Введите цвет", "");
-    setBgColor(color);
-    break;
-
-  case "prompt: or":
-    alert(userAge());
-    break;
-
-  case "confirm: or this days":
-    alert(shopping());
-    break;
-
-  case "confirm: if this days":
-    shoppingUsingIf();
-    break;
-
-  case "triple prompt":
-    deriveFullName();
-    break;
-
-  case "default: or":
-    deriveFullNameUsingOr();
-    break;
-
-  case "default: if":
-    deriveFullNameUsingIf();
-    break;
-
-  case "login and password":
-    userVerification();
-    break;
-
-  case "currency calc":
-  case "currency calc: improved":
-  case "currency calc: two rates":
-    currencyCalc();
-    break;
-
-  case "currency calc: if":
-    currencyCalcUsingIf();
-    break;
-
-  case "scissors":
-    scissors();
-    break;
-
-  case "Задание на синий пояс":
-    currencyCalcUsingObj();
-    break;
-
-  case "Задание на черный пояс":
-    scissorsLogicalOperations();
-    break;
-
-  default:
-    alert("Неверное название задания");
-    break;
-}
