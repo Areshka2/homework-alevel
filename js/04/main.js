@@ -116,7 +116,6 @@ console.table(employeeObj);
 
 
 // 2. Добавить функции - конструктору метод (помним про prototype): getFullName который вернет полное имя начиная с фамилии в виде строки
-
 Employee.prototype.getFullName = function () {
   return this.surname + ' ' + this.name;
 }
@@ -125,7 +124,6 @@ console.log(employeeObj.getFullName());
 
 
 // 3. Создать новый массив emplyeeArr в котором будут содержаться те же обьекты, но созданные функцией - конструктором Emploee. Новый массив должен содержать имя emplyeeConstructArr.
-
 let createEmployesFromArr = (arr) => {
   let newArr = [];
 
@@ -143,7 +141,6 @@ console.table(employeeConstructArr);
 
 
 // 4. Создать функцию которая вернет массив со всеми полными именами каждого employee, содержащегося в emplyeeConstructArr;
-
 const getFullNamesFromArr = (arr) => {
   let fullNameArr = [];
 
@@ -158,7 +155,6 @@ console.table(getFullNamesFromArr(employeeConstructArr));
 
 
 // 5. Создать функцию которая вернет среднее значение зарплаты всех employee
-
 Employee.prototype.getSalary = function () {
   return this.salary;
 }
@@ -177,7 +173,6 @@ console.log(getMiddleSalary(employeeConstructArr));
 
 
 // 6. Создать функцию которая выберет рандомного работника из массива emplyeeConstructArr. Вы должны учитывать в функции длинну массива, так как если работников 7, а рандомное число будет равно больше 7, то результат будет undefined. Вы можете использовать обьявленную функцию в сомой же себе. Подсказка Math.random;
-
 const getRandomNumber = (maxRandom) => {
   const randomNumber = Math.floor(Math.random() * (maxRandom + 1));
   if (randomNumber > maxRandom) {
@@ -191,7 +186,7 @@ const getRandomEmployee = (arr) => {
   return arr[getRandomNumber(arr.length - 1)];
 }
 
-console.log(getRandomEmployee(employeeConstructArr)) // {id: 0, name: 'Valeriy', surname: 'Zhmishenko', salary: 1000,  workExperience: 10,  isPrivileges: true, gender:'male' }
+console.log(getRandomEmployee(employeeConstructArr));
 
 // Второй способ
 function getRandomEmployee2(arr) {
