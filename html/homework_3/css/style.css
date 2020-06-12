@@ -1,0 +1,36 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+.level-2 {
+  width: 350px;
+  height: 220px;
+  padding: 15px 10px 20px;
+  margin-bottom: 30px;
+  border: 2px dashed #f00;
+  background-color: #0f0;
+}
+
+.level-3 {
+  width: 800px;
+  text-align: justify;
+}
+
+.level-3::after {
+  content: '';
+  display: block;
+  clear: both;
+}
+
+.img-fl {
+  float: left;
+  margin-right: 20px;
+  margin-bottom: 10px;
+}
+
+.img-fr {
+  float: right;
+  margin: 20px 0 10px 20px;
+}
