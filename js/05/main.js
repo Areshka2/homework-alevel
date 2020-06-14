@@ -85,36 +85,21 @@ class CreateStudent {
     this.surname = surname;
     this.ratingPoint = ratingPoint;
     this.schoolPoint = schoolPoint;
-    // this.isSelfPayment = this.getSelfPayment();
     this.isSelfPayment = isSelfPayment;
   }
 
   static id = 1;
-
-  getSelfPayment() {
-    return this.ratingPoint < 800;
-  }
 }
 
 const setAllCreatedStudentsByConstructor = arrOfStudents => {
   let newStudentsArr = [];
 
   arrOfStudents.sort(function (a, b) {
-    return b.ratingPoint - a.ratingPoint;
+    return b.ratingPoint - a.ratingPoint || b.schoolPoint - a.schoolPoint;
   });
 
-  for (var i = 0; i < arrOfStudents.length; i++) {
-    isSelfPayment = i < 5 && arrOfStudents[i].ratingPoint > 800 ? false : true;
-
-    if (i > 4) {
-      for (let j = 0; j < newStudentsArr.length; j++) {
-        if (arrOfStudents[i].ratingPoint > newStudentsArr[j].ratingPoint) {
-          isSelfPayment = false;
-          break;
-        }
-      }
-    }
-
+  for (let i = 0; i < arrOfStudents.length; i++) {
+    isSelfPayment = i < 5 && arrOfStudents[i].ratingPoint >= 800 ? false : true;
     const studentObj = new CreateStudent(arrOfStudents[i], isSelfPayment);
     newStudentsArr.push(studentObj);
   }
