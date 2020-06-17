@@ -94,3 +94,64 @@ const getAllGmailCustomers = (array) => {
 }
 
 console.table(getAllGmailCustomers(arrOfCustomers));
+
+
+// 5. Создать функцию sortByCompanyType которая вернет объект, в котором будут свойства, ключами которых будут типы компаний, а значением этих ключей - массив состоящий из id кастомеров в которых они работают. Тип компании - последние символы в значении customer.company.name. Например: 'Kirlin Group'
+
+// const sortByCompanyType = (array) => {
+//   let companyTypeObj = {};
+
+
+//   for (let i = 0; i < array.length; i++) {
+//     let { id, company } = array[i];
+
+//     let arrUserId = [];
+//     for (let j = 0; j < array.length; j++) {
+//       if (companyTypeObj.includes(company.name)) { 
+
+//       }
+//     }
+
+//     companyTypeObj[company.name] = getUserIdByCompany(company.name);
+//   }
+
+//   return companyTypeObj;
+// }
+
+// console.table(sortByCompanyType(arrOfCustomers));
+
+
+/*
+ *Дополнительные задания 
+*/
+// 6.Содать функцию которая вернет отсортированный массив кастомеров по их общим тратам(свойство accountHistory смотрим на amount). Сортировка по возрастанию.
+// 7. Содать функцию которая вернет отсартированный массив кастомеров по их общим тратам (свойство accountHistory смотрим на amount). Сортировка по параметру функции. Параметров может быть 2 вида ('asc', 'desc').
+
+const sortCustomerByAccountHistory = (array, order = 'asc') => {
+
+  const getTotalSpending = (obj) => {
+
+    let { accountHistory } = obj;
+    let sumAmount = 0;
+
+    for (let i = 0; i < accountHistory.length; i++) {
+      sumAmount += +accountHistory[i].amount;
+    }
+
+    return sumAmount;
+  }
+
+  array.sort(function (a, b) {
+    if (order === 'asc') {
+      return getTotalSpending(a) - getTotalSpending(b);
+    }
+
+    if (order === 'desc') {
+      return getTotalSpending(b) - getTotalSpending(a);
+    }
+  });
+
+  return arrOfCustomers;
+}
+
+console.log(sortCustomerByAccountHistory(arrOfCustomers, 'desc'));
