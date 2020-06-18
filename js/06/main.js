@@ -65,7 +65,7 @@ const getAllCustomersIdsWithComDomain = (array) => {
   for (let i = 0; i < array.length; i++) {
     let { id, website } = array[i];
     const firstLevelDomain = website.split('.').slice(1).join('.');
-    if (('.' + firstLevelDomain) === '.com') {
+    if ((firstLevelDomain) === 'com') {
       arrCustomerIds.push(id);
     }
   }
@@ -98,27 +98,26 @@ console.table(getAllGmailCustomers(arrOfCustomers));
 
 // 5. Создать функцию sortByCompanyType которая вернет объект, в котором будут свойства, ключами которых будут типы компаний, а значением этих ключей - массив состоящий из id кастомеров в которых они работают. Тип компании - последние символы в значении customer.company.name. Например: 'Kirlin Group'
 
-// const sortByCompanyType = (array) => {
-//   let companyTypeObj = {};
+const sortByCompanyType = (array) => {
+  let companyTypeObj = {};
 
+  for (let i = 0; i < array.length; i++) {
+    let { id, company } = array[i];
+    let arrTypeCompanySplit = company.name.split(' ');
+    let typeOfCompany = arrTypeCompanySplit[arrTypeCompanySplit.length - 1];
 
-//   for (let i = 0; i < array.length; i++) {
-//     let { id, company } = array[i];
+    if (typeOfCompany in companyTypeObj) {
+      companyTypeObj[typeOfCompany].push(id);
+    } else {
+      companyTypeObj[typeOfCompany] = [];
+      companyTypeObj[typeOfCompany].push(id);
+    }
+  }
 
-//     let arrUserId = [];
-//     for (let j = 0; j < array.length; j++) {
-//       if (companyTypeObj.includes(company.name)) { 
+  return companyTypeObj;
+}
 
-//       }
-//     }
-
-//     companyTypeObj[company.name] = getUserIdByCompany(company.name);
-//   }
-
-//   return companyTypeObj;
-// }
-
-// console.table(sortByCompanyType(arrOfCustomers));
+console.table(sortByCompanyType(arrOfCustomers));
 
 
 /*
