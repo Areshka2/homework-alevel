@@ -1,6 +1,6 @@
 class Candidate {
   constructor(props) {
-    Object.assign(this, props);    
+    Object.assign(this, props);
   }
 
   state() {
@@ -20,7 +20,7 @@ const getCompanyNames = arrOfObj => {
   return arrCompany.filter((item, index) => arrCompany.indexOf(item) === index);
 };
 
-console.log(getCompanyNames(condidateArr));
+console.log(getCompanyNames(arrCandidates));
 
 
 // 3. Создать функцию которая выведет мне массив id всех кондидатов, которые были зарагестрированны в том же году что и год указанный в параметре. Помним что сначала желательно отформатировать дату как в предыдущем дз.
@@ -33,7 +33,7 @@ const getUsersByYear = (arrOfObj, year = 2017) => {
 
   return arrFilterCandidate.map(item => item._id);
 }
-console.log(getUsersByYear(condidateArr, 2018));
+console.log(getUsersByYear(arrCandidates, 2018));
 
 
 // 4. Создать функцию которая вернет массив с кондидатами, отфильтрованных по кол-ву непрочитанных сообщений. Смотрим св-во greeting, там указанно это количество в строке, Вам надо достать это число из строки и сверять с тем что в параметер вашей функции.
@@ -41,7 +41,7 @@ const getCondidatesByUnreadMsg = (arrOfObj, num = 8) => {
   return arrOfObj.filter(item => +item.greeting.match(/\d+/g) === num);
 }
 
-console.log(getCondidatesByUnreadMsg(condidateArr, 6));
+console.log(getCondidatesByUnreadMsg(arrCandidates, 6));
 
 
 // 5. Создать функцию которая вернет массив по свойству gender.
@@ -49,7 +49,7 @@ const getCondidatesByGender = (arrOfObj, gender = 'male') => {
   return arrOfObj.filter(item => item.gender === gender);
 }
 
-console.log(getCondidatesByGender(condidateArr, 'male'));
+console.log(getCondidatesByGender(arrCandidates, 'male'));
 
 
 //! Additional task
