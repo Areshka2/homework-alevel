@@ -1,8 +1,6 @@
 class Candidate {
-  constructor(obj) {
-    let newObj = Object.assign({}, obj);
-    this.address = newObj.address;
-    this.company = newObj.company;
+  constructor(props) {
+    Object.assign(this, props);    
   }
 
   state() {
@@ -14,6 +12,7 @@ const candidate = new Candidate(condidateArr[0]);
 console.log(candidate);
 console.log(candidate.state());
 
+let arrCandidates = condidateArr.map(item => new Candidate(item));
 
 // 2. Создать функцию которая выведет массив с названиями фирм взятыми из св-ва company. Если фирмы повторяются в массиве, то удалить дубликаты.
 const getCompanyNames = arrOfObj => {
