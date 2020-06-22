@@ -26,24 +26,20 @@ console.log(getCompanyNames(condidateArr));
 
 // 3. Создать функцию которая выведет мне массив id всех кондидатов, которые были зарагестрированны в том же году что и год указанный в параметре. Помним что сначала желательно отформатировать дату как в предыдущем дз.
 const getUsersByYear = (arrOfObj, year = 2017) => {
-  let arrId = [];
 
-  arrOfObj.map(item => {
-    let getYear = (new Date(Date.parse(item.registered))).getFullYear();
-    if (year === getYear) arrId.push(item._id);
+  let arrFilterCandidate = arrOfObj.filter(item => {
+    let getYear = (new Date(item.registered)).getFullYear();
+    return getYear === year;
   });
 
-  return arrId;
+  return arrFilterCandidate.map(item => item._id);
 }
 console.log(getUsersByYear(condidateArr, 2018));
 
 
 // 4. Создать функцию которая вернет массив с кондидатами, отфильтрованных по кол-ву непрочитанных сообщений. Смотрим св-во greeting, там указанно это количество в строке, Вам надо достать это число из строки и сверять с тем что в параметер вашей функции.
 const getCondidatesByUnreadMsg = (arrOfObj, num = 8) => {
-  return arrOfObj.filter(item => {
-    let numOfUnreadMsg = +item.greeting.match(/\d+/g);
-    return numOfUnreadMsg === num;
-  })
+  return arrOfObj.filter(item => +item.greeting.match(/\d+/g) === num);
 }
 
 console.log(getCondidatesByUnreadMsg(condidateArr, 6));
