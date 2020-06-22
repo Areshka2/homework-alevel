@@ -17,7 +17,8 @@ console.log(candidate.state());
 
 // 2. Создать функцию которая выведет массив с названиями фирм взятыми из св-ва company. Если фирмы повторяются в массиве, то удалить дубликаты.
 const getCompanyNames = arrOfObj => {
-  return arrOfObj.map(item => item.company);
+  let arrCompany = arrOfObj.map(item => item.company);
+  return arrCompany.filter((item, index) => arrCompany.indexOf(item) === index);
 };
 
 console.log(getCompanyNames(condidateArr));
