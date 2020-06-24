@@ -63,9 +63,9 @@ console.log(candidate.addressInfo);
 
 //! Additionl task
 // 8. Содать функцию,где мы первым параметром передадим объект с новым кандидатом, а вторым id любого кондидата в массиве condidateArr. Функция должна будет вставить кандидата созданного через конструктор Condidate на основе данных из первого параметра в массив перед кондидатом у которого id равно тому что передали в параметре
-const obj = {
+const newCandidate = {
   "_id": "5e216bc9a6059760578aefa4",
-  "index": 0,
+  "index": 66,
   "guid": "e325a387-e1f4-4c1a-8df8-f188b06e3a2a",
   "isActive": true,
   "balance": "$3,365.14",
@@ -82,15 +82,7 @@ const obj = {
   "registered": "2015-11-05T05:14:05 -02:00",
   "latitude": -31.58974,
   "longitude": -174.55185,
-  "tags": [
-    "quis",
-    "ad",
-    "amet",
-    "Lorem",
-    "et",
-    "magna",
-    "ut"
-  ],
+  "tags": ["quis", "ad", "amet", "Lorem", "et", "magna", "ut"],
   "friends": [
     {
       "id": 0,
@@ -138,10 +130,8 @@ const obj = {
 }
 
 const insertIntoarr = (obj, id) => {
-  candidatesArr.splice(id, 0, new Candidate(obj));
-  candidatesArr[id].index = id;
-  return candidatesArr.map((item, i) => i > id ? item.index += 1 : false);
+  return candidatesArr.splice(id, 0, new Candidate(obj));
 }
 
-insertIntoarr(obj, 2)
+insertIntoarr(newCandidate, 4)
 console.log(candidatesArr);
