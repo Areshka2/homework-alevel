@@ -25,10 +25,6 @@ const getFilms = async () => {
   return films;
 }
 
-getFilms()
-  .then(res => console.log(res))
-  .catch(error => console.log(error));
-
 const film = {
   title: 'Матрица',
   director: 'Лана Вачовски'
@@ -37,12 +33,12 @@ const film = {
 const createFilm = async (film) => {
   if (film) {
     let films = await getFilms();
-    // let filterFilm = films.some(item => item.title === film.title);
+    let filterFilm = films.some(item => item.title === film.title);
 
-    // if (!filterFilm) {
-    let addedFilm = await request(`${baseUrl}/films`, 'POST', film);
-    return addedFilm;
-    // }
+    if (!filterFilm) {
+      let addedFilm = await request(`${baseUrl}/films`, 'POST', film);
+      return addedFilm;
+    }
   }
 }
 
@@ -91,3 +87,52 @@ const setFilmForUser = async (userId, filmObject) => {
 }
 
 // setFilmForUser('5f06d94a086f8d0017c45dad', newFilm);
+
+
+// 5. Создать функцию которая возмет всех юзеров http://jsonplaceholder.typicode.com/users, потом запросит массив альбомов и добавит каждому юзеру в массив albums все эти альбомы http://jsonplaceholder.typicode.com/albums смторим на userId. После запрашиваем photos http://jsonplaceholder.typicode.com/photos и добавлем все фотки в альбомы по albumId каждому юзеру.
+const baseUrlTypicode = 'http://jsonplaceholder.typicode.com';
+
+const getUsersTypicode = async () => {
+  let users = await request(`${baseUrlTypicode}/users`);
+  return users;
+}
+
+const getAlbumsTypicode = async () => {
+  let albums = await request(`${baseUrlTypicode}/albums`);
+  return albums;
+}
+
+const getPhotosTypicode = async () => {
+  let photos = await request(`${baseUrlTypicode}/photos`);
+  return photos;
+}
+
+const getUserFull = async () => {
+  let users = await getUsersTypicode();
+  let albums = await getAlbumsTypicode();
+  let photos = await getPhotosTypicode();
+
+  for (const user of users) {
+    user.albums = [];
+
+    for (const album of albums) {
+
+      if (user.id === album.userId) {
+        album.photos = [];
+        user.albums.push(album);
+
+        for (const photo of photos) {
+
+          if (album.id === photo.albumId) {
+            album.photos.push(photo);
+          }
+
+        }
+      }
+
+    }
+  }
+  console.log(users)
+}
+
+getUserFull();
