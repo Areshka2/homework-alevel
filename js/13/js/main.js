@@ -4,8 +4,9 @@ class Pizza {
   }
 }
 
+// get a list of pizzas
 const pizzas = pizzaList.map(item => new Pizza(item));
-
+// get container for pizzas
 const pizzaListBlock = document.querySelector('.pizza-list');
 
 function cardTemplate(pizza) {
@@ -52,7 +53,7 @@ function cardTemplate(pizza) {
   cardFooter.appendChild(price);
   card.appendChild(cardImg);
   card.appendChild(caloricity);
-  card.appendChild(cardBody);  
+  card.appendChild(cardBody);
   card.appendChild(cardFooter);
   card.appendChild(btnAdd);
   pizzaItem.appendChild(card);
@@ -60,6 +61,7 @@ function cardTemplate(pizza) {
   return pizzaItem;
 }
 
+// function add pizzas 
 function renderPizzas(pizzaArr) {
   const fragment = document.createDocumentFragment();
 
@@ -71,4 +73,29 @@ function renderPizzas(pizzaArr) {
   pizzaListBlock.appendChild(fragment);
 }
 
-renderPizzas(pizzas);
+// get button search
+const btnSearch = document.querySelector('.btn-search');
+// get input for search
+const search = document.querySelector('input[type="search"]')
+
+btnSearch.onclick = e => {
+  sessionStorage.setItem('searchValue', search.value);
+}
+
+if (sessionStorage.getItem('searchValue')) {
+  const filterPizzasArr = pizzas.filter(pizza => pizza.name.toLowerCase() === sessionStorage.getItem('searchValue').toLowerCase());
+  if (filterPizzasArr.length) {
+    renderPizzas(filterPizzasArr);
+  } else {
+    renderPizzas(pizzas);
+    alert('Нет такой пицы');
+  }
+} else {
+  renderPizzas(pizzas);
+}
+
+// when reloading the page, remove sessionStorage searchValue
+sessionStorage.setItem("is_reloaded", true);
+if (sessionStorage.getItem("is_reloaded")) {
+  sessionStorage.removeItem('searchValue')
+}
