@@ -99,3 +99,26 @@ sessionStorage.setItem("is_reloaded", true);
 if (sessionStorage.getItem("is_reloaded")) {
   sessionStorage.removeItem('searchValue')
 }
+
+
+// sort Pizzas
+const sortPizzas = (array, order = "default") => {
+  sortArr = [...array];
+  sortArr.sort((a, b) => {
+    if (order === 'default') return sortArr;
+    if (order === 'asc') return a.price - b.price;
+    if (order === 'desc') return b.price - a.price;
+  })
+
+  return sortArr;
+}
+
+const select = document.getElementById('sort');
+
+select.onchange = e => {
+  const index = select.selectedIndex;
+  const option = select.options;
+  const selectValue = option[index].value;
+  pizzaListBlock.innerHTML = '';
+  renderPizzas(sortPizzas(pizzas, selectValue));
+}
