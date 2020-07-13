@@ -11,66 +11,35 @@ const pizzaListBlock = document.querySelector('.pizza-list');
 
 function cardTemplate(pizza) {
   const imgPath = 'img';
-  const pizzaItem = document.createElement("div");
-  pizzaItem.classList.add('pizza-item', 'col', 'mb-5');
 
-  const card = document.createElement("div");
-  card.classList.add('card', 'h-100', 'pb-3', 'pt-2');
-
-  const cardImg = document.createElement('img');
-  cardImg.classList.add('card-img-top', 'w-50', 'mx-auto');
-  cardImg.src = imgPath + '/' + pizza.img;
-
-  const cardBody = document.createElement("div");
-  cardBody.classList.add('card-body');
-
-  const title = document.createElement('h5');
-  title.classList.add('card-title');
-  title.textContent = pizza.name;
-
-  const composition = document.createElement('p');
-  composition.classList.add('card-text');
-  composition.textContent = pizza.composition.join(', ');
-
-  const caloricity = document.createElement('p');
-  caloricity.classList.add('pizza-caloricity');
-  caloricity.textContent = pizza.caloricity + ' кал';
-
-  const cardFooter = document.createElement("div");
-  cardFooter.classList.add('card-footer');
-
-  const price = document.createElement('p');
-  price.classList.add('card-price');
-  price.innerHTML = pizza.price + ' &#8372;';
-
-  const btnAdd = document.createElement('a');
-  btnAdd.href = "#";
-  btnAdd.classList.add('btn', 'btn-add-to-basket', 'd-block');
-  btnAdd.textContent = '+';
-
-  cardBody.appendChild(title);
-  cardBody.appendChild(composition);
-  cardFooter.appendChild(price);
-  card.appendChild(cardImg);
-  card.appendChild(caloricity);
-  card.appendChild(cardBody);
-  card.appendChild(cardFooter);
-  card.appendChild(btnAdd);
-  pizzaItem.appendChild(card);
-
-  return pizzaItem;
+  return `
+    <div class="pizza-item col mb-5">
+      <div class="card h-100 pb-3 pt-2">
+        <img class="card-img-top w-50 mx-auto" src="${imgPath}/${pizza.img}">
+        <p class="pizza-caloricity">${pizza.caloricity || ''} кал</p>
+        <div class="card-body">
+          <h5 class="card-title">${pizza.name || ''}</h5>
+          <p class="card-text">${pizza.composition.join(', ') || ''}</p>
+        </div>
+        <div class="card-footer">
+          <p class="card-price">${pizza.price || ''} ₴</p>
+        </div>
+        <a href="#" class="btn btn-add-to-basket d-block">+</a>
+      </div>
+    </div>
+  `;
 }
 
-// function add pizzas 
+// function render pizzas 
 function renderPizzas(pizzaArr) {
-  const fragment = document.createDocumentFragment();
+  let fragment = '';
 
   pizzaArr.forEach((pizza => {
     const pizzaItem = cardTemplate(pizza);
-    fragment.appendChild(pizzaItem);
+    fragment += pizzaItem;
   }));
 
-  pizzaListBlock.appendChild(fragment);
+  pizzaListBlock.insertAdjacentHTML('afterbegin', fragment);
 }
 
 // get button search
