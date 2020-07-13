@@ -9,6 +9,7 @@ const pizzas = pizzaList.map(item => new Pizza(item));
 // get container for pizzas
 const pizzaListBlock = document.querySelector('.pizza-list');
 
+// Pizza item template function
 function cardTemplate(pizza) {
   const imgPath = 'img';
 
@@ -39,35 +40,37 @@ function renderPizzas(pizzaArr) {
     fragment += pizzaItem;
   }));
 
+  pizzaListBlock.innerHTML = '';
   pizzaListBlock.insertAdjacentHTML('afterbegin', fragment);
 }
 
-// get button search
-const btnSearch = document.querySelector('.btn-search');
+
+document.addEventListener('DOMContentLoaded', function () {
+  renderPizzas(pizzas);
+});
+
+// get search form
+const searchForm = document.querySelector('.form-search')
 // get input for search
-const search = document.querySelector('input[type="search"]')
+const searchInput = searchForm.querySelector('input[type="search"]')
 
-btnSearch.onclick = e => {
-  sessionStorage.setItem('searchValue', search.value);
-}
+searchForm.addEventListener('submit', (e) => {
+  e.preventDefault();
 
-if (sessionStorage.getItem('searchValue')) {
-  const filterPizzasArr = pizzas.filter(pizza => pizza.name.toLowerCase() === sessionStorage.getItem('searchValue').toLowerCase());
-  if (filterPizzasArr.length) {
-    renderPizzas(filterPizzasArr);
+  if (searchInput.value) {
+    const filterPizzasArr = pizzas.filter(pizza => pizza.name.toLowerCase() === searchInput.value.toLowerCase());
+
+    if (filterPizzasArr.length) {
+      renderPizzas(filterPizzasArr);
+    } else {
+      renderPizzas(pizzas);
+      alert('Нет такой пицы');
+    }
   } else {
     renderPizzas(pizzas);
-    alert('Нет такой пицы');
   }
-} else {
-  renderPizzas(pizzas);
-}
 
-// when reloading the page, remove sessionStorage searchValue
-sessionStorage.setItem("is_reloaded", true);
-if (sessionStorage.getItem("is_reloaded")) {
-  sessionStorage.removeItem('searchValue')
-}
+})
 
 
 // sort Pizzas
@@ -82,12 +85,9 @@ const sortPizzas = (array, order = "default") => {
   return sortArr;
 }
 
-const select = document.getElementById('sort');
+const sortSelect = document.getElementById('sort');
 
-select.onchange = e => {
-  const index = select.selectedIndex;
-  const option = select.options;
-  const selectValue = option[index].value;
+sortSelect.onchange = e => {
   pizzaListBlock.innerHTML = '';
-  renderPizzas(sortPizzas(pizzas, selectValue));
+  renderPizzas(sortPizzas(pizzas, sortSelect.value));
 }
