@@ -33,22 +33,58 @@
 
   <main>
     <div class="container">
-      <div class="d-flex justify-content-between align-items-center mb-3">
-        <h1>Pizza</h1>
+      <div class="row">
+        <div class="col-12 col-md-9 col-lg-10 order-2">
+          <div class="d-flex justify-content-between align-items-center">
+            <h1>Pizza</h1>
 
-        <form class='form-inline'>
-          <div class="form-group">
-            <select class="form-control" id="sort">
-              <option value="default">по релевантности</option>
-              <option value="asc">по возростанию</option>
-              <option value="desc">по убыванию</option>
-            </select>
+            <form class="d-flex align-items-end">
+              <div class="form-group">
+                <select class="form-control" id="sort">
+                  <option value="default">по релевантности</option>
+                  <option value="asc">по возростанию</option>
+                  <option value="desc">по убыванию</option>
+                </select>
+              </div>
+            </form>
           </div>
-        </form>
-      </div>
 
-      <div class="pizza-list row row-cols-1 row-cols-sm-2 row-cols-md-3 text-center">
+          <div class="pizza-list row row-cols-1 row-cols-md-2 row-cols-lg-3 text-center">
 
+          </div>
+          <!-- /.row -->
+        </div>
+        <!-- /.col -->
+
+        <div class="col-12 col-md-3 col-lg-2 order-1 mb-3 filter">
+          <h4>Фильтр</h4>
+          <form id="filter" class="">
+            <div class="form-row">
+              <div class="filter-price col-6 col-md-12 form-group">
+                Цена:<br>
+                <div class="price-input d-flex mb-2">
+                  <input type="number" id="minPrice" class="form-control-sm mr-1" placeholder="">
+                  <input type="number" id="maxPrice" class="form-control-sm" placeholder="">
+                </div>
+                <button class="btn btn-sm btn-info">Применить</button>
+              </div>
+              <!-- /.filter-price -->
+              <div class="filter-caloricity col-6 col-md-12 form-group">
+                Каллории:<br>
+                <div class="caloricity-input d-flex mb-2">
+                  <input type="number" id="minCaloricity" class="form-control-sm mr-1" placeholder="">
+                  <input type="number" id="maxCaloricity" class="form-control-sm" placeholder="">
+                </div>
+                <button class="btn btn-sm btn-info">Применить</button>
+              </div>
+              <!-- /.filter-caloricity -->
+            </div>
+            <!-- /.form-row -->
+            <button type="button" class="btn btn-sm btn-danger btn-reset">Сброс фильтра</button>
+          </form>
+          <!-- /#filter -->
+        </div>
+        <!-- /.col -->
       </div>
       <!-- /.row -->
     </div>
