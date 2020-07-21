@@ -35,7 +35,6 @@ function cardTemplate(pizza) {
     e.stopPropagation();
     this.classList.toggle('active');
     pizza.isFavorite = !pizza.isFavorite;
-    console.log(pizza)
 
     setPizzasListToLS();
     renderPizzas(pizzaList);
@@ -59,7 +58,6 @@ function cardTemplate(pizza) {
 
   // 1. Выводить информацию о пицце в модальном окне при клике на карточку с пиццей
   card.addEventListener('click', function (e) {
-    console.log(e.target)
     if (!e.target.className.includes('btn-add-to-basket')) {
       modal(pizza);
     }
@@ -196,7 +194,6 @@ const modal = (pizza) => {
   }
 }
 
-
 // 2. Добавить кнопку "Создать пиццу" в header.
 const btnModalOpen = document.querySelector('.btn-modal-open');
 btnModalOpen.addEventListener('click', (e) => {
@@ -233,8 +230,7 @@ btnModalOpen.addEventListener('click', (e) => {
     formCheck.classList.add('form-check', 'form-check-inline');
     formCheck.innerHTML = `
       <input class="form-check-input" type="checkbox" id="checkbox${ingredient.id}" value="${ingredient.name}">
-      <label class="form-check-label" for="checkbox${ingredient.id}">${ingredient.name}</label>
-    `
+      <label class="form-check-label" for="checkbox${ingredient.id}">${ingredient.name}</label>`
 
     pizzaComposition.appendChild(formCheck);
   }
@@ -253,7 +249,6 @@ btnModalOpen.addEventListener('click', (e) => {
     cretePizza()
   })
 
-
   const close = modalCreatePizza.getElementsByClassName("modal__close")[0];
   close.onclick = function () {
     modalCreatePizza.style.display = "none";
@@ -266,11 +261,10 @@ btnModalOpen.addEventListener('click', (e) => {
   }
 });
 
-
+// function create new Pizza
 function cretePizza() {
   const formCreatePizza = document.querySelector('.form-create-pizza');
   const pizzaImgSrc = document.getElementById('pizzaImg').src;
-  console.log(pizzaImgSrc)
   const pizzaNameValue = formCreatePizza.querySelector('.pizza-name').value;
   const pizzaComposition = formCreatePizza.querySelector('.pizza-composition');
   const composition = pizzaComposition.querySelectorAll('input[type="checkbox"]');
@@ -311,7 +305,6 @@ function previewFile() {
   var preview = document.getElementById('pizzaImg');
   var file = document.querySelector('input[type=file]').files[0];
   var reader = new FileReader();
-  console.log(reader)
 
   reader.onloadend = function () {
     preview.src = reader.result;
