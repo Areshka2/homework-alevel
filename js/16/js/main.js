@@ -319,13 +319,13 @@ function cretePizza() {
 const convertToBase64 = file => {
   const fileReader = new FileReader();
 
-  return new Promise((resolve, reject) => {
+  return new Promise((reserve, reject) => {
     fileReader.onerror = () => {
       fileReader.abort()
       reject("Problem parsing input file.");
     }
     fileReader.onload = () => {
-      resolve(fileReader.result);
+      reserve(fileReader.result);
     }
     fileReader.readAsDataURL(file);
   })
@@ -368,3 +368,29 @@ function addToCart(pizza) {
 
   setCartData(cartData);
 }
+
+// get content Cart page
+function getContentPage() {
+  return new Promise((reserve, reject) => {
+    const xhr = new XMLHttpRequest();
+
+    xhr.open('GET', 'http://127.0.0.1:5500/js/16/cart.html');
+
+    xhr.onreadystatechange = function () {
+      if (this.readyState == 4 && this.status == 200) {
+        reserve(xhr.response);
+      }
+    }
+
+    xhr.onerror = () => {
+      reject(`Error. Status code: ${xhr.status}`);
+    }
+
+    xhr.send();
+  })
+}
+
+document.querySelector('.btn-cart').addEventListener('click', async (e) => {
+  e.preventDefault();
+  const res = await getContentPage();
+});
