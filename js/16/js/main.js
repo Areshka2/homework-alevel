@@ -390,7 +390,7 @@ function getContentPage() {
   })
 }
 
-document.querySelector('.btn-cart').addEventListener('click', async (e) => {
-  e.preventDefault();
-  const res = await getContentPage();
-});
+// document.querySelector('.btn-cart').addEventListener('click', async (e) => {
+//   e.preventDefault();
+//   const res = await getContentPage();
+// });
